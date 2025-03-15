@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth-Based Bokeh Effect</title>
+</head>
+<body>
+    <h2>Upload an Image for Depth-Based Bokeh Effect</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
+        <button type="submit">Upload</button>
+    </form>
+    <br>
+    <h3>Preview</h3>
+    <img id="preview" src="" style="max-width:500px; display:none;">
+    <script>
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("preview").src = reader.result;
+                document.getElementById("preview").style.display = "block";
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+</body>
+</html>
